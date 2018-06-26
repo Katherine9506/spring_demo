@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@EnableWebMvc
-@Configuration /* 启用spring mvc */
+@Configuration
+@EnableWebMvc/* 启用spring mvc */
 @ComponentScan("spittr.web")  /* 启用组件扫描 */
 public class WebConfig extends WebMvcConfigurerAdapter {
 
