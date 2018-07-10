@@ -1,6 +1,7 @@
 package spittr.test;
 
 import org.junit.Test;
+import org.mockito.Mock;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
@@ -14,6 +15,7 @@ import spittr.Spittle;
 import spittr.data.SpittleRepository;
 import spittr.web.HomeController;
 import spittr.web.SpittleController;
+import sun.security.provider.ConfigFile;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +40,7 @@ public class HomeControllerTest {
     public void shouldShowRecentSpittles() throws Exception {
         List<Spittle> expectedSpittles = createSpittleList(20);
         SpittleRepository mockRepository = mock(SpittleRepository.class);
-        when(mockRepository.findSpittles(Long.MAX_VALUE, 20))
+        when(mockRepository.findSpittles(100000000, 20))
                 .thenReturn(expectedSpittles);
 
         SpittleController controller = new SpittleController(mockRepository);
@@ -73,7 +75,21 @@ public class HomeControllerTest {
         mockMvc.perform(get("/spittles?max=238900&count=50"))
                 .andExpect(view().name("spittles"))
                 .andExpect(model().attributeExists("spittleList"))
-                .andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
+//                .andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
+                .andExpect(model().attribute("spittleList", expectedSpittles));
+    }
+
+    @Test
+    public void testSpittle() throws Exception {
+        Spittle expectedSpittle = new Spittle("Hello", new Date());
+        SpittleRepository mockRepository = mock(SpittleRepository.class);
+        when(mockRepository.findOne(12345))
+                .thenReturn(expectedSpittle);
+        SpittleController controller = new SpittleController(mockRepository);
+        MockMvc mockMvc = standaloneSetup(controller).build();
+        mockMvc.perform(get("/spittles/12345"))
+                .andExpect(view().name("spittle"))
+                .andExpect(model().attributeExists("spittle"));
     }
 
 }
