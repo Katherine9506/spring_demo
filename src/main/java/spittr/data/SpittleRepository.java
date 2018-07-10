@@ -1,7 +1,7 @@
 package spittr.data;
 
 import org.springframework.stereotype.Repository;
-import spittr.Spittle;
+import spittr.domain.Spittle;
 
 import java.util.List;
 

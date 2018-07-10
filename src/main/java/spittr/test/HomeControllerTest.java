@@ -1,7 +1,6 @@
 package spittr.test;
 
 import org.junit.Test;
-import org.mockito.Mock;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
@@ -11,11 +10,10 @@ import static org.mockito.Mockito.*;
 import static org.junit.matchers.JUnitMatchers.*;
 
 import org.springframework.web.servlet.view.InternalResourceView;
-import spittr.Spittle;
+import spittr.domain.Spittle;
 import spittr.data.SpittleRepository;
 import spittr.web.HomeController;
 import spittr.web.SpittleController;
-import sun.security.provider.ConfigFile;
 
 import java.util.ArrayList;
 import java.util.Date;
