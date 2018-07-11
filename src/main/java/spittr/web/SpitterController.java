@@ -28,7 +28,6 @@ public class SpitterController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String processRegistration(Spitter spitter) {
-        System.out.println(spitter);
         spitterRepository.save(spitter);
         return "redirect:/spitter/" + spitter.getUsername();
     }
