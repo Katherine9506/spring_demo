@@ -1,12 +1,17 @@
 package spittr.domain;
 
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class Spitter {
     private Long id;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private String username;
+    @NotNull
     private String password;
 
     public Spitter() {
